@@ -11,10 +11,14 @@ function addDivide() {
 function modAdd() {
 	echo $(($(($1%$2)) + $3))
 }
+#Constants
+declare -A values
 echo "Enter three numbers"
 read a b c 
 #echo $a $b $c
-addMultiply $a $b $c
-multiplyAdd $a $b $c
-addDivide $a $b $c
-modAdd $a $b $c
+values["addMultiply"]=$(addMultiply $a $b $c)
+values["multiplyAdd"]=$(multiplyAdd $a $b $c)
+values["addDivide"]=$(addDivide $a $b $c)
+values["modAdd"]=$(modAdd $a $b $c)
+echo ${!values[@]}
+echo ${values[@]}
