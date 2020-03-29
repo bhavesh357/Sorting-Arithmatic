@@ -54,20 +54,29 @@ function sortAscending() {
 	valuesInArray[indexOfSmallest]=$temp
 done
 }
+function performOperations() {
+	values["addMultiply"]=$(addMultiply $1 $2 $3)
+	values["multiplyAdd"]=$(multiplyAdd $1 $2 $3)
+	values["addDivide"]=$(addDivide $1 $2 $3)
+	values["modAdd"]=$(modAdd $1 $2 $3)
+	#echo ${!values[@]}
+	#echo ${values[@]}`
+}
+function storeInArray() {
+	valuesInArray[0]=${values["addMultiply"]}
+	valuesInArray[1]=${values["multiplyAdd"]}
+	valuesInArray[2]=${values["addDivide"]}
+	valuesInArray[3]=${values["modAdd"]}
+	#echo $valuesInArray
+}
 echo "Enter three numbers"
 read a b c 
 #echo $a $b $c
-values["addMultiply"]=$(addMultiply $a $b $c)
-values["multiplyAdd"]=$(multiplyAdd $a $b $c)
-values["addDivide"]=$(addDivide $a $b $c)
-values["modAdd"]=$(modAdd $a $b $c)
-#echo ${!values[@]}
-#echo ${values[@]}`
-valuesInArray[0]=${values["addMultiply"]}
-valuesInArray[1]=${values["multiplyAdd"]}
-valuesInArray[2]=${values["addDivide"]}
-valuesInArray[3]=${values["modAdd"]}
-#echo $valuesInArray
+#perform all operations
+performOperations $a $b $c
+#store values in array
+storeInArray
+#sorting
 sortDescending 
 echo ${valuesInArray[@]}
 sortAscending 
