@@ -34,6 +34,26 @@ function sortDescending() {
 	valuesInArray[indexOfLargest]=$temp
 done
 }
+function sortAscending() {
+	for ((i=0;i<4;i++))
+	do
+		Smallest=${valuesInArray[i]}
+		indexOfSmallest=$i
+		for ((j=$i;j<4;j++))
+		do
+		#finding smallest from i index
+		if [ ${valuesInArray[j]} -lt $Smallest ]
+		then
+			Largest=${valuesInArray[j]}
+			indexOfSmallest=$j
+		fi
+	done
+	#swapping the numbers
+	temp=${valuesInArray[i]}
+	valuesInArray[i]=${valuesInArray[indexOfSmallest]}
+	valuesInArray[indexOfSmallest]=$temp
+done
+}
 echo "Enter three numbers"
 read a b c 
 #echo $a $b $c
@@ -49,4 +69,6 @@ valuesInArray[2]=${values["addDivide"]}
 valuesInArray[3]=${values["modAdd"]}
 #echo $valuesInArray
 sortDescending 
+echo ${valuesInArray[@]}
+sortAscending 
 echo ${valuesInArray[@]}
