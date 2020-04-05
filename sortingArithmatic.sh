@@ -1,5 +1,7 @@
 #!/bin/bash -x
 #Constants
+totalOperations=4
+#Variables
 declare -A values
 declare -a valuesInArray
 declare -a ascendingArray
@@ -29,18 +31,18 @@ function storeInArray() {
 	valuesInArray[3]=${values["modAdd"]}
 }
 function sort() {
-	for ((k=0;k<4;k++))
+	for ((k=0;k<$totalOperations;k++))
 	do
 		ascendingArray[k]=${valuesInArray[k]}
 		descendingArray[k]=${valuesInArray[k]}
 	done
-	for ((i=0;i<4;i++))
+	for ((i=0;i<$totalOperations;i++))
 	do
 		smallest=${ascendingArray[i]}
 		largest=${descendingArray[i]}
 		indexOfSmallest=$i
 		indexOfLargest=$i
-		for ((j=$i;j<4;j++))
+		for ((j=$i;j<$totalOperations;j++))
 		do
 			#finding smallest from i index
 			if [ ${ascendingArray[j]} -lt $smallest ]
